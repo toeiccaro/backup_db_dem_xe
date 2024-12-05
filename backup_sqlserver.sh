@@ -34,15 +34,15 @@ if [ $? -eq 0 ]; then
         sudo chown hello:hello "$EXPORT_FILE"
 
         # Đồng bộ hóa lên S3
-        echo "Đang đồng bộ hóa với S3..."
-        rclone sync "$RSYNC_PATH" dem_xe_backup_data:/dem-xe-backup-data
+        # echo "Đang đồng bộ hóa với S3..."
+        # rclone sync "$RSYNC_PATH" dem_xe_backup_data:/dem-xe-backup-data
         
-        if [ $? -eq 0 ]; then
-            echo "Đồng bộ hóa lên S3 thành công."
-        else
-            echo "Đồng bộ hóa lên S3 thất bại."
-            exit 1
-        fi
+        # if [ $? -eq 0 ]; then
+        #     echo "Đồng bộ hóa lên S3 thành công."
+        # else
+        #     echo "Đồng bộ hóa lên S3 thất bại."
+        #     exit 1
+        # fi
     else
         echo "Sao chép file sao lưu thất bại."
         exit 1

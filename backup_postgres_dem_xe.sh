@@ -21,20 +21,8 @@ docker exec "$CONTAINER_NAME" pg_dump -U "$USER" "$DATABASE_NAME" > "$EXPORT_FIL
 # Kiểm tra nếu lệnh export thành công
 if [ $? -eq 0 ]; then
     echo "Export thành công: $EXPORT_FILE"
-    
-    # Tiến hành đồng bộ hóa với S3
-    echo "Đang đồng bộ hóa với S3..."
-    rclone sync "$RSYNC_PATH" dem_xe_backup_data:/dem-xe-backup-data
-
-    # Kiểm tra nếu lệnh rclone thành công
-    if [ $? -eq 0 ]; then
-        echo "Đồng bộ hóa thành công lên S3"
-    else
-        echo "Đồng bộ hóa thất bại"
-        exit 1
-    fi
 else
-    echo "Export thất bại, không thực hiện đồng bộ"
+    echo "Export thất bại, không thể tạo file backup."
     exit 1
 fi
 
